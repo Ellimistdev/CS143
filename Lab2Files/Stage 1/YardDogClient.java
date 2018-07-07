@@ -3,7 +3,7 @@
    YardDog hierarchy of classes along each
    stage of development as described in the Lab 2 Specifications. 
 
-   PROGRAMMER: ???
+   PROGRAMMER: Nick Rodriguez
    
    ATTENTION PROGRAMMERS!!!
    
@@ -57,7 +57,6 @@ public class YardDogClient {
       Test abstract modified YardDog and LeapingDog
    *******************************************************************/
    public static void stage1_Test() {
-   /*
       //YardDog is correctly abstract if the next Java statement causes
       //a compiler error. In that case, comment out the statement.
       //YardDog shouldnotWork = new YardDog();
@@ -76,8 +75,7 @@ public class YardDogClient {
       defaultLeaper.leap();
       System.out.print(defaultLeaper);
       System.out.printf("%s dug %d holes.\n", defaultLeaper.getName(), 
-                         holeCount);  
-   */
+                         holeCount);
    }
 
    
