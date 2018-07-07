@@ -106,8 +106,8 @@ public class YardDogClient {
    *******************************************************************/
    public static void stage3_Test() {
       SmartLeaper newton = new SmartLeaper(); //test default constructor
-      System.out.println("Default SmartLeaper after digHoles() and leap():"); 
       System.out.print(newton);
+      System.out.println("Default SmartLeaper after digHoles() and leap():"); 
       int numHoles = newton.digHoles();
       newton.leap();
       System.out.print(newton);
@@ -128,9 +128,21 @@ public class YardDogClient {
       Test Polymorphism and Casting from YardDog to derived class
    *******************************************************************/
    public static void stage4_Test() {
-   /*
-      Put code here to satisfy the Lab 2 Stage 4 Specifications.
-   */
+      YardDog[] doggos = { new LeapingDog(), new BurrowingDog(), new SmartLeaper() };
+      
+      for (YardDog doggo : doggos) {
+         doggo.digHoles();
+         System.out.println(doggo);
+         if (doggo instanceof LeapingDog) {
+            System.out.println("Leaping");
+            ((LeapingDog) doggo).leap();
+            System.out.println(doggo);
+         } else if (doggo instanceof BurrowingDog) {
+            System.out.println("Burrowing");
+            ((BurrowingDog) doggo).burrow();
+            System.out.println(doggo);
+         }
+      }      
    }//end stage4_Test() method
    
    /******************************************************************
@@ -170,6 +182,5 @@ public class YardDogClient {
       System.out.println("dogB2 should now contain dogB1's data:\n" + dogB2);
       
    */   
-   }//end stage5_Test() method
-   
+   }//end stage5_Test() method   
 }//end of YardDogClient

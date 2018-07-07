@@ -20,7 +20,6 @@ public class LeapingDog extends YardDog {
       boolean digging = true;
 
       do {
-         print();
          row = r.nextInt(getNumRows() - 2) + 1;
          column = r.nextInt(getNumColumns() - 2) + 1;
          status = processLocation(row, column);
@@ -30,7 +29,6 @@ public class LeapingDog extends YardDog {
             holes++;
          }       
       } while (digging);
-      print();
 
       return holes;
    }
