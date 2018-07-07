@@ -15,7 +15,6 @@ public abstract class YardDog {
    public static final int MIN_COLS = 5;
    public static final int MAX_COLS = 75;
    public static final int NUM_BONES = 3;
-   public static final String DIG_PROMPT = "Enter row and column for hole to dig: ";
    private char[][] yard;
    private String name;
 
