@@ -6,8 +6,9 @@ Description:This program simulates a dog burying and
 Time spent on assignment #2:  
 */
 import java.util.*;
+import java.io.*;
 
-public abstract class YardDog {
+public abstract class YardDog implements Saveable{
 
    public static final int DEFAULT_ROWS = 15;
    public static final int DEFAULT_COLS = 20;
@@ -87,6 +88,26 @@ public abstract class YardDog {
    }
 
    public abstract int digHoles();
+
+   public void save(PrintStream output) throws IOException {
+      output.printf("%d %d\n%s", yard.length, yard[0].length, this.toString());
+   }
+   
+   public void retrieve(Scanner input) {      
+      int rows = input.nextInt();
+      int columns = input.nextInt(); 
+      this.yard = new char[rows][columns];
+      String line;      
+      
+      input.nextLine();      
+      for (int i = 0; i < rows; i++) {
+         line = input.nextLine();         
+         for (int j = 0; j < columns; j++) {
+            yard[i][j] = line.charAt(j);
+         }
+      }
+      this.name = input.next();
+   }
 
    /* Accessors */
    public void print() {

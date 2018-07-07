@@ -1,4 +1,5 @@
-import java.util.Random;
+import java.util.*;
+import java.io.*;
 
 public class LeapingDog extends YardDog {
 
@@ -66,6 +67,17 @@ public class LeapingDog extends YardDog {
 
       int[] location = { row, col };
       return location;
+   }
+
+   public void save(String filename) throws IOException {
+      PrintStream out = new PrintStream(new File(filename));
+      super.save(out);
+      out.printf("TBD");
+   }
+   
+   public void retrieve(String filename) throws IOException {
+      Scanner input = new Scanner(new File(filename));
+      super.retrieve(input);      
    }
 
    /* Helpers */

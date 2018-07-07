@@ -152,7 +152,6 @@ public class YardDogClient {
          BurrowingDog: save(String filename), retrieve(String filename)
    *******************************************************************/
    public static void stage5_Test() throws IOException {
-   /* 
       //Test LeapingDog save() and retrieve() by testing SmartLeaper
       SmartLeaper dogL1 = new SmartLeaper(5,5,"Newton");
       System.out.println("SmartLeaper dogL1 = new SmartLeaper(5,5,\"Newton\");");
@@ -180,7 +179,5 @@ public class YardDogClient {
       dogB2.retrieve("saveDogB1.txt");
       System.out.print("After dogB2.retrieve(\"saveDogB1.txt\")"); 
       System.out.println("dogB2 should now contain dogB1's data:\n" + dogB2);
-      
-   */   
    }//end stage5_Test() method   
 }//end of YardDogClient

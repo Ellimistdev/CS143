@@ -1,4 +1,5 @@
-import java.util.Random;
+import java.util.*;
+import java.io.*;
 
 public class BurrowingDog extends YardDog {
 
@@ -62,6 +63,18 @@ public class BurrowingDog extends YardDog {
          }
       }
    }
+   
+   public void save(String filename) throws IOException {
+      PrintStream out = new PrintStream(new File(filename));
+      super.save(out);
+      out.printf("TBD");
+   }
+   
+   public void retrieve(String filename) throws IOException {
+      Scanner input = new Scanner(new File(filename));
+      super.retrieve(input);      
+   }
+   
    
    /* Helpers */
    // Tests if a targeted location is inside the borders of the array
