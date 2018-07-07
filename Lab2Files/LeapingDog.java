@@ -16,23 +16,32 @@ public class LeapingDog extends YardDog {
       Random r = new Random();
       int row;
       int column;
+      int status;
       boolean digging = true;
 
       do {
          print();
          row = r.nextInt(getNumRows() - 2) + 1;
          column = r.nextInt(getNumColumns() - 2) + 1;
-         if (boneFound(row, column)) {
-            this.setElement(row,column, 'H');
+         status = processLocation(row, column);
+         if (status == 0) {
             digging = false;
-         } else {
-            this.setElement(row, column, '.');
+         } else if (status == 1) {
             holes++;
-         }
+         }       
       } while (digging);
       print();
 
       return holes;
+   }
+
+   public int processLocation(int row, int column) {
+      if (boneFound(row, column)) {
+         this.setElement(row,column, 'H');
+         return 0;
+      }
+      this.setElement(row, column, '.');
+      return 1;       
    }
 
    public void leap() {

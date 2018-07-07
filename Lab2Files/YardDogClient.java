@@ -105,7 +105,6 @@ public class YardDogClient {
       Test SmartLeaper implementation
    *******************************************************************/
    public static void stage3_Test() {
-   /*
       SmartLeaper newton = new SmartLeaper(); //test default constructor
       System.out.println("Default SmartLeaper after digHoles() and leap():"); 
       System.out.print(newton);
@@ -123,7 +122,6 @@ public class YardDogClient {
       System.out.print(einstein);
       System.out.printf("%s dug %d holes.\n", einstein.getName(), 
                          numHoles);  
-   */
    }//end stage3_Test() method
    
    /******************************************************************
