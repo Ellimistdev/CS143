@@ -1,3 +1,8 @@
+/*
+Programmer: Nick Rodriguez
+Description: This class describes a child of YardDog that digs in 
+   a continuous fashion and has the additional burrow() method.
+*/
 import java.util.*;
 import java.io.*;
 

@@ -1,5 +1,8 @@
-import java.util.Random;
-
+/*
+Programmer: Nick Rodriguez
+Description: This class describes a child of LeapingDog that will
+   not dig in the same location twice.
+*/
 public class SmartLeaper extends LeapingDog {
    public SmartLeaper() {
       super();

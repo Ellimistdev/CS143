@@ -5,19 +5,7 @@
 
    PROGRAMMER: Nick Rodriguez
    
-   ATTENTION PROGRAMMERS!!!
-   
-   1) Make sure your YardDog.java file (and eventually 
-      LeapingDog.java, SmartLeaper.java and BurrowingDog.java)
-      is in the same folder as this YardDogClient.java file.
- 
-   2) Be sure you have uncommented all the methods that
-      test the stages of Lab 2 that you implemented in
-      part or fully.
-   
-   3) Be sure you have commented out the lines of the methods
-      that test items from Lab 2 that you did not implement.
-
+   Time spent on assignment 2: 5 hours, 2 minutes.
 */
 import java.util.*;
 import java.io.*;
