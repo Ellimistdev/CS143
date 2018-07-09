@@ -2,19 +2,9 @@
    PROGRAM: This is a client program to test the 
    YardDog class described in the Lab 1 Specifications. 
 
-   PROGRAMMER: ???
+   PROGRAMMER: Nick Rodriguez
    
-   ATTENTION PROGRAMMERS!!!
-   
-   1) Make sure your YardDog.java file is in the same folder
-      as this YardDogClient.java file.
- 
-   2) Be sure you have uncommented all the methods that
-      test the stages of Lab 1 that you implemented.
-   
-   3) Be sure you have commented out the lines of the methods
-      that test items from Lab 1 that you did not implement.
-
+   Time spent on assignment #1:  3 hours,  38 minutes.
 */
 import java.util.*;
 import java.io.*;

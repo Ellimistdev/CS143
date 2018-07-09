@@ -3,7 +3,6 @@ Name:Nick Rodriguez
 Phone:210.836.5860 (texting okay)
 Description:This program simulates a dog burying and 
    digging up bones in a yard via a 2d array
-Time spent on assignment #1:  3 hours,  38 minutes
 */
 import java.util.*;
 
