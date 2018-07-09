@@ -52,23 +52,33 @@ public class LeapingDog extends YardDog {
       int[] target = findBorder();
       this.setElement(target[0], target[1], '@');
    }
-
+   
    // randomly generates a position on the border of a 2d array
    private int[] findBorder() {
       Random r = new Random();
-      int rowMax = getNumRows();
-      int colMax = getNumColumns();
-      boolean digging = true;
+      int fence = r.nextInt(4);
       int row;
       int col;
 
-      do {
-         row = r.nextInt(rowMax);
-         col = r.nextInt(colMax);
-         if (isOutOfRange(row, 1, rowMax - 2) || isOutOfRange(col, 1, colMax - 2)) {
-            digging = false;
+      if (fence < 2) { 
+         if (fence == 0) { // north
+            row = fence;
+         } else {          // south
+            row = getNumRows() - 1;
          }
-      } while(digging);
+         // 0 to yard[0].length - 1
+         // includes corners
+         col = r.nextInt(getNumColumns());
+      } else { 
+         if (fence == 2) { // west
+            col = 0;
+         } else {          // east
+            col = getNumColumns() - 1;
+         }
+         // 1 to yard.length - 2 
+         // excludes corners
+         row = r.nextInt(getNumRows() - 1) + 1;
+      }
 
       int[] location = { row, col };
       return location;
