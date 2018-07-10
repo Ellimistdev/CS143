@@ -31,8 +31,8 @@ class RectanglePlay {
          implements Compararable interface
          by defining compareTo() method appropriately.  
       */   
-      //Arrays.sort(rs);  
-      //print("\nAfter Arrays.sort(rs):", rs);
+      Arrays.sort(rs);  
+      print("\nAfter Arrays.sort(rs):", rs);
       
       ArrayList<Rectangle> recList = new ArrayList<Rectangle>();
       for(int i=0; i<rs.length; i++)
@@ -44,8 +44,8 @@ class RectanglePlay {
          that implements Comparator interface for Rectangle
          objects by defining compare() method appropriately.  
       */   
-      //Collections.sort(recList,new RectangleComparator());
-      //print("\nAfter Collections.sort():", rs);
+      Collections.sort(recList,new RectangleComparator());
+      print("\nAfter Collections.sort():", recList);
     
    }
    
@@ -66,8 +66,17 @@ class RectanglePlay {
                            r.get(i), r.get(i).getArea());
                            //r.get(i) is r.get(i).toString() to fit in %s field
    }
-
-   public static class Rectangle {
+   
+   public static class RectangleComparator implements Comparator<Rectangle> {
+     public int compare(Rectangle r1, Rectangle r2) { 
+       if (r1.height != r2.height) { 
+         return r1.height - r2.height;
+       }
+       return r1.width - r2.width;
+     }
+   }
+   
+   public static class Rectangle implements Comparable<Rectangle> {
       public static int count = 0;   // class (static) field
       public int width, height;      // instance fields
       
@@ -88,6 +97,12 @@ class RectanglePlay {
          return "h x w = " + height + " x " + width;
       }
       
+      public int compareTo(Rectangle r) {
+        if (width != r.width) {
+          return width - r.width;
+        }
+        return height - r.height;
+      }
       
       public int getArea() {
          return height * width;
