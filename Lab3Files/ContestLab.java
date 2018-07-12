@@ -1,17 +1,29 @@
 import java.util.*;
 import java.io.*;
 
-public class ContestLab{
+class ContestLab{
 
-   public ContestLab(String filename) throws IOException {
-      Scanner file = new Scanner(new File(filename));
-      ArrayList<ContestantRecord> data = getData(file);
-            
+   public static void main(String[] args) throws IOException{
+      String fileName = "contest2016.dat";
+      ArrayList<ContestantRecord> data = getData(fileName);
+      
+      System.out.println(data);
    }
    
-   private ArrayList<ContestantRecord> getData(Scanner file) {
+   private static ArrayList<ContestantRecord> getData(String fileName) throws IOException{
+   
+      Scanner file = new Scanner(new File(fileName));
       ArrayList<ContestantRecord> data = new ArrayList<ContestantRecord>();
-
+      
+      while(file.hasNext()) {
+         ContestantRecord record = new ContestantRecord();
+         record.setName(file.nextLine());       //or: record.contestant = ...
+         record.setDistance(file.nextDouble()); //or: record.distance = ...
+         record.setTime(file.nextDouble());     //or: record.time = ...
+         data.add(record);
+         file.nextLine();
+      }
+      
       return data;
    }
       
@@ -20,6 +32,36 @@ public class ContestLab{
       private double distance;
       private double time;
       
+      /* Constructors */
+      public ContestantRecord() {
+         this("", 0.0, 0.0);
+      }  
+      
+      public ContestantRecord( String contestant, double distance, double time) {
+         setName(contestant);
+         setDistance(distance);
+         setTime(time);
+      }
+      
+      /* Mutators */
+      public void setName(String contestant) {
+         this.contestant = contestant;
+      }
+      
+      public void setDistance(double distance) {
+         this.distance = distance;
+      }
+      
+      public void setTime(double time) {
+         this.time = time;
+      }
+      
+      /* Accessors */
+      public String toString() {
+         return String.format("%s %.2f %.2f\n", this.contestant, this.distance, this.time);
+      }
+      
+      /* Overrides */
       public boolean equals(ContestantRecord c1) {
          if (compareTo(c1) == 0) {
             return true;
