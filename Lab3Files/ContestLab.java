@@ -1,3 +1,9 @@
+/*
+Programmer: Nick Rodriguez
+Description: This program defines a ContestantRecord object and
+   creates an ArrayList<ContestantRecord> from the file.
+Time spent on assignment 3: 3 hours, 17 minutes
+*/
 import java.util.*;
 import java.io.*;
 
