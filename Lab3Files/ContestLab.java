@@ -8,16 +8,56 @@ import java.util.*;
 import java.io.*;
 
 class ContestLab{
+   public static final int REPORT_WIDTH = 50;
+   public static final int CONTESTANT_WIDTH = 29;
+   public static final String REPORT_HEADING = String.format("\t%s\t\t\t\t\t\t\t  %s\t\t %s", "Contestants", "Ft", "Secs");
 
    public static void main(String[] args) throws IOException{
+      Scanner console = new Scanner(System.in);
       String fileName = "contest2016.dat";
+      ContestantRecord targetRec;
       ArrayList<ContestantRecord> data = getData(fileName);
       
       System.out.println(data);
+      displayReport("Original Data", data);
+      Collections.shuffle(data);
+      displayReport("Shuffled Data", data);
+      Collections.sort(data);
+      displayReport("Contest Results Sorted by Name", data);
+      Collections.sort(data, new RaceComparator());
+      displayReport("Race Results", data);
+      Collections.sort(data, new TossComparator());
+      displayReport("Results by Toss Distance", data);
+      
+      do {
+         System.out.print("Enter target name to search for (or QUIT): ");
+         targetRec = new ContestantRecord();
+         targetRec.contestant = console.nextLine();
+         if (data.indexOf(targetRec) > 0){
+            targetRec = data.get(data.indexOf(targetRec));
+            System.out.printf("indexOf() shows %s had toss of %.1f ft and race time of %.1f secs\n", targetRec.contestant, targetRec.distance, targetRec.time);
+         } else {
+            System.out.printf("indexOf( says %s NOT in list.\n", targetRec.contestant);
+         }            
+      }while(!targetRec.contestant.equalsIgnoreCase("QUIT"));
+   }
+   
+   private static void displayReport(String title, ArrayList<ContestantRecord> data) {
+      printChar(System.out, ' ', (REPORT_WIDTH / 2) - (title.length() / 2));
+      System.out.printf("%s\n", title);
+      printChar(System.out, '=', REPORT_WIDTH);     
+      System.out.printf("\n%s\n", REPORT_HEADING);
+      printChar(System.out, '=', REPORT_WIDTH);  
+      for (ContestantRecord record : data) {
+         System.out.printf("\n\t%s", record.contestant);
+         printChar(System.out, ' ', CONTESTANT_WIDTH - record.contestant.length() + 1);
+         System.out.printf("%.2f\t\t %.2f", record.distance, record.time);         
+      }
+      System.out.println();
+      
    }
    
    private static ArrayList<ContestantRecord> getData(String fileName) throws IOException{
-   
       Scanner file = new Scanner(new File(fileName));
       ArrayList<ContestantRecord> data = new ArrayList<ContestantRecord>();
       
@@ -32,7 +72,15 @@ class ContestLab{
       
       return data;
    }
-      
+   
+   // prints the passed char to the console 'count' times.
+   private static void printChar(PrintStream output, char c, int count){
+      for (int i = 1; i <= count; i++) {
+         output.print(c);
+      }
+   }
+
+   /* Internal Classes */         
    public static class ContestantRecord implements Comparable<ContestantRecord>{
       private String contestant;
       private double distance;
@@ -41,7 +89,7 @@ class ContestLab{
       /* Constructors */
       public ContestantRecord() {
          this("", 0.0, 0.0);
-      }  
+      }
       
       public ContestantRecord( String contestant, double distance, double time) {
          setName(contestant);
@@ -68,28 +116,33 @@ class ContestLab{
       }
       
       /* Overrides */
-      public boolean equals(ContestantRecord c1) {
-         if (compareTo(c1) == 0) {
-            return true;
+      public boolean equals(Object obj) {
+         if (obj instanceof ContestantRecord) {
+            return (compareTo((ContestantRecord) obj) == 0);
          }
          return false;
       }
       
       public int compareTo(ContestantRecord c1) {
-         if (distance != c1.distance) { 
-            return (int) Math.round(distance - c1.distance);
-         }
-            return (int) Math.round(time - c1.time);
+         return contestant.toLowerCase().compareTo(c1.contestant.toLowerCase());
       }
    }
-   /*
-   public static class ContestantComparator implements Comparator<ContestantRecord> {
-     public int compare(ContestantRecord c1, ContestantRecord c2) { 
-       if (c1.distance != c2.distance) { 
-         return (int) Math.round(c1.distance - c2.distance);
-       }
-       return (int) Math.round(c1.time - c2.time);
-     }
+   
+   public static class TossComparator implements Comparator<ContestantRecord> {
+      public int compare(ContestantRecord c1, ContestantRecord c2) {
+         Double d1 = new Double(c1.distance);
+         Double d2 = new Double(c2.distance);
+         return d1.compareTo(d2) * -1;
+      }
    }
-   */
+
+   public static class RaceComparator implements Comparator<ContestantRecord> {
+      public int compare(ContestantRecord c1, ContestantRecord c2) {
+         Double t1 = new Double(c1.time);
+         Double t2 = new Double(c2.time);
+         return t1.compareTo(t2);
+      }
+   }
+
+   
 }
