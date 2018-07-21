@@ -27,7 +27,7 @@ public class AssassinManagerClient {
             System.out.println("Error in file. Try another file.");   
          }
       } while(!mgrSuccessfullyCreated);
-      
+      /*
       //Play a game of Assassin using the mgr AssassinManager object.
       while ( !mgr.gameOver() )  {
          System.out.println("\nCurrent kill ring:");
@@ -45,6 +45,7 @@ public class AssassinManagerClient {
       System.out.println("\nGame was won by " + mgr.winner());
       System.out.println("Final gravyard is as follows:");
       mgr.printGraveyard();
+      */
    }//end main() method
    
    //method: fillArrayList
