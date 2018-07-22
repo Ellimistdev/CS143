@@ -21,12 +21,6 @@ public class AssassinManagerClient {
             fillArrayListFromFile(playersList);
             mgr = new AssassinManager(playersList);
             mgrSuccessfullyCreated = true;  
-            System.out.println(mgr.killRingContains("token")); // Remove
-            System.out.println(mgr.killRingContains("Token")); // Remove
-            System.out.println(mgr.killRingContains("TOKEN")); // Remove
-            System.out.println(mgr.graveYardContains("token")); // Remove
-            System.out.println(mgr.graveYardContains("Token")); // Remove
-            System.out.println(mgr.graveYardContains("TOKEN")); // Remove
          }
          catch(Exception e) {
             System.out.println(e);

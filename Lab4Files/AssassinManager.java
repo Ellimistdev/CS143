@@ -14,44 +14,64 @@ class AssassinManager{
          this.killer = null;
          this.next = null;
       }
+
+      // adds the passed node to the front of the list upon which the method was invoked.
+      public AssassinNode addFirst(AssassinNode node) {
+         node.next = this;
+         return node;
+      }      
       
-      // finds and returns a node from the linked list
-      // if the target node is not the first entry, removes the node
-      public AssassinNode extract(String name) {
+      public void setKiller(String player) {
+         AssassinNode prev = getPrevNode(player); 
+         AssassinNode node = (prev.next == null) ? this : prev.next;
+
+         node.killer = prev.player;
+      }
+      
+      
+      private AssassinNode getPrevNode(String player) {
+         if (!this.contains(player)) {
+            throw new IllegalArgumentException("Attempted to find non-existant node");
+         }
          AssassinNode node = this;
          AssassinNode prev = null;
-         AssassinNode dead;         
-         boolean firstNode = false;
 
-         while(node.equals(name) != 0){
+         while(node.equals(player) != 0){
             prev = node;
             node = node.next;
          }
-         dead = new AssassinNode(node.player);
-         // if prev has not been set, the first node has been selected
-         // we must set prev to the final node in the list
-         if (prev == null) {  
-            firstNode = true;       
+         
+         if (prev == null) {
             prev = node;
             do{
                prev = prev.next;
             }while(prev.next != null);
          }
-            
-         dead.killer = prev.player;
-         if (!firstNode){
-            prev.next = node.next;
-         }
-         return dead;
+         return prev;
       }
 
-      public boolean contains(String name) {
+      // removes the targeted node from the list
+      // TODO: This should also remove nodes if they are at index 0
+      // currently it returns the whole list in that case
+      public AssassinNode extractNode(String player) {
+         AssassinNode prev = getPrevNode(player);
+         AssassinNode node = (prev.next == null) ? this : prev.next;
+
+         // if node == this, setting node.next mutates this.next unintentionally
+         if (!(node == this)) {
+            prev.next = node.next;
+            node.next = null;
+         }
+         return node;
+      }
+
+      public boolean contains(String player) {
          if (this == null) {
             return false;
          }
          AssassinNode node = this;
          while (node != null) {
-            if (node.equals(name) == 0) {
+            if (node.equals(player) == 0) {
                return true;
             }
             node = node.next;
@@ -83,7 +103,7 @@ class AssassinManager{
       }
    }
 
-   /* Accessors */   
+   /* Accessors */
    public void printKillRing() {
       AssassinNode node = killRing;
       String target;
@@ -98,7 +118,7 @@ class AssassinManager{
          System.out.println(target);
       }
    }
-   
+
    private static String getString(String s1, String s2, String s3) {
       return String.format("\t %s %s %s", s1, s2, s3);
    }
@@ -107,8 +127,8 @@ class AssassinManager{
       AssassinNode node = graveYard;
       String fill = "was killed by";
       while (node != null) {
-            System.out.println(getString(node.player, fill, node.killer));
-            node = node.next;
+         System.out.println(getString(node.player, fill, node.killer));
+         node = node.next;
       }
    }
 
@@ -118,7 +138,7 @@ class AssassinManager{
       }
       catch (Exception e){ // ignore NullPointerException
          return false;
-       }
+      }
    }
 
    public boolean graveYardContains(String name) {
@@ -142,24 +162,19 @@ class AssassinManager{
       if (!killRing.contains(name) || this.gameOver()) {
          throw new IllegalArgumentException(String.format("%s is not in the killRing", name));
       }
-      AssassinNode dead = killRing.extract(name);
-      if(killRing.equals(name) == 0) {
-         killRing = killRing.next;
+      killRing.setKiller(name);
+      AssassinNode dead = killRing.extractNode(name);
+
+      // TODO: This should not be necessary
+      if (dead.next != null) {
+         killRing = killRing.next; 
+         dead.next = null;
       }
-      inter(dead);    
+
+      inter(dead);
    }
-   
-   
+
    private void inter(AssassinNode dead) {
-      if(graveYard == null) {
-         graveYard = dead;
-      }
-      else {
-         AssassinNode target = graveYard;
-         while(target.next != null) {
-            target = target.next;
-         }
-         target.next = dead;         
-      }   
+      graveYard = (graveYard == null) ? dead : graveYard.addFirst(dead);
    }
 }
