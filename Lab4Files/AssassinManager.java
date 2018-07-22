@@ -1,3 +1,9 @@
+/*
+Programmer: Nick Rodriguez
+Description: This program implements a basic linked list and manages
+   a game of assassin.
+Time spent on assignment 3: 6 hours, 53 minutes
+*/
 import java.util.*;
 import java.io.*;
 
