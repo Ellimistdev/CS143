@@ -25,16 +25,15 @@ class AssassinManager{
       public AssassinNode addFirst(AssassinNode node) {
          node.next = this;
          return node;
-      }      
-      
+      }
+
       public void setKiller(String player) {
-         AssassinNode prev = getPrevNode(player); 
+         AssassinNode prev = getPrevNode(player);
          AssassinNode node = (prev.next == null) ? this : prev.next;
 
          node.killer = prev.player;
       }
-      
-      
+
       private AssassinNode getPrevNode(String player) {
          if (!this.contains(player)) {
             throw new IllegalArgumentException("Attempted to find non-existant node");
