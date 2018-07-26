@@ -56,7 +56,7 @@ class AssassinManager{
          return prev;
       }
 
-      // removes the targeted node from the list
+      // removes and returns the targeted node from the list
       // TODO: This should also remove nodes if they are at index 0
       // currently it returns the whole list in that case
       public AssassinNode extractNode(String player) {
@@ -172,6 +172,7 @@ class AssassinManager{
       AssassinNode dead = killRing.extractNode(name);
 
       // TODO: This should not be necessary
+      // removes head node from killRing if target was the first node
       if (dead.next != null) {
          killRing = killRing.next; 
          dead.next = null;
