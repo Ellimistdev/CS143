@@ -91,7 +91,7 @@ class AssassinManager{
 
    /* Constructors */
    public AssassinManager(ArrayList<String> playerNamesList) {
-      if (playerNamesList.isEmpty()) {
+      if (playerNamesList == null || playerNamesList.isEmpty()) {
          throw new IllegalArgumentException("Received empty list");
       }
 
