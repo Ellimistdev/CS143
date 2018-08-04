@@ -29,6 +29,7 @@ public class QuestionTreeClient {
 
    public static void main(String[] args) {
       QuestionTree tree = new QuestionTree();
+      tree.askQuestions();
       tree.write(System.out);
    }//end main() method
 }//end QuestionTreeClient class

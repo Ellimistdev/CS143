@@ -22,16 +22,57 @@ public class QuestionTree {
          }
          this.data = data;
       }
+
+      private boolean isLeaf() {
+         return (this.left == null && this.right == null);
+      }
    }
 
    public QuestionTree() {
-      root = new QuestionNode("Is it an animal?");
+      root = new QuestionNode("Is it an animal");
       root.right = new QuestionNode("computer");
       root.left = new QuestionNode("Does it hop?");
       root.left.left = new QuestionNode("frog");
       root.left.right = new QuestionNode("dog");
    }
 
+   public void askQuestions() {
+      do {
+         askQuestions(root);
+      }while (yesTo("\nDo you want to go again?"));
+   }
+   
+   private void askQuestions(QuestionNode node) {     
+      System.out.println("Please think of an object for me to guess.");
+      if (node.isLeaf()){
+         if (yesTo(String.format("Would your object happen to be %s?", node.data))) {
+            System.out.println("Great, I got it right!");
+         } else {
+            System.out.printf("What is the name of your object? ");
+            QuestionNode object = new QuestionNode(console.nextLine().trim().toLowerCase());
+            System.out.println("Give me a yes/no question to distinguish");
+            System.out.printf("\tobject %s from object %s\n", object.data, node.data);
+            QuestionNode question = new QuestionNode(console.nextLine().trim());
+            QuestionNode temp = node;
+            question.right = temp;
+            question.left = object;
+            node = question;
+            yesTo(String.format("What is the answer for object %s", object.data));
+         }
+      } else {
+         if (yesTo(node.data)) {
+            askQuestions(node.left);
+         } else {
+            askQuestions(node.right);
+         }
+      }
+      
+   }
+   
+   private void read(Scanner input) {
+   
+   }
+   
    public void write(PrintStream output) {
       if (root != null) {
          printPreOrder(root, output);
@@ -41,7 +82,7 @@ public class QuestionTree {
    // Performs a pre-order traversal of the target node, printing the data to the printstream
    private void printPreOrder(QuestionNode node, PrintStream output) {
       if (node != null) {
-         if (node.left == null && node.right == null) {
+         if (node.isLeaf()) {
             output.printf("A:\n");
          } else {
             output.printf("Q:\n");
