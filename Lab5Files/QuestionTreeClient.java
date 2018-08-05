@@ -1,35 +1,27 @@
 /*
 Programmer: Nick Rodriguez
 Description: Creates an instance of QuestionTree and plays a game of 20 Q's
-Time spent on assignment 5: 2 hours, 23 minutes
+Time spent on assignment 5: 5 hours, 25 minutes
 */
 import java.util.*;
 import java.io.*;
 
 public class QuestionTreeClient {
-
-      /*
-         NOTE: The only input main() should perform is by calling the yesTo()
-         method of the QuestionTree class appropriately. DO NOT DECLARE A 
-         Scanner OBJECT LINKED TO System.in WITHIN THIS CLASS.
-
-         In the post-checkpoint version of your program, have main() call the
-         QuestionTree(), yesTo(), read(), write() and askQuestions()
-         methods of the QuestionTree class appropriately to perform the following tasks:
-
-         1. Create a QuestionTree object.
-
-         2. If the user wants to override the tree with data from questions.txt,
-            read the data from the file into the tree.
-
-         3. Keep playing the guessing game until the user wants to quit.
-
-         4. Save the current tree in questions.txt if the user desires.
-      */
-
-   public static void main(String[] args) {
+   public static void main(String[] args) throws IOException{
       QuestionTree tree = new QuestionTree();
-      tree.askQuestions();
-      tree.write(System.out);
-   }//end main() method
-}//end QuestionTreeClient class
+
+      if (tree.yesTo("Do you want to read in the previous tree?")) {
+         tree.read(new Scanner(new File("questions.txt")));
+      }
+
+      do {
+         System.out.println("Please think of an object for me to guess.");
+         tree.askQuestions();
+      }while (tree.yesTo("\nDo you want to go again?"));
+
+      if (tree.yesTo("Do you want to save this tree?")) {
+         tree.write(new PrintStream(new File("questions.txt")));
+         System.out.println("Tree has been saved.");
+      }
+   }
+}

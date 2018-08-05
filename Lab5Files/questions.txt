@@ -1,0 +1,34 @@
+Q:
+is it an animal?
+Q:
+does it hop?
+Q:
+is it fluffy?
+A:
+rabbit
+A:
+frog
+Q:
+does it fly?
+A:
+bird
+A:
+dog
+Q:
+is it a vehicle?
+Q:
+does it have 2 wheels?
+A:
+bike
+Q:
+does it have 3 wheels?
+A:
+tricycle
+A:
+car
+Q:
+is it electronic?
+A:
+computer
+A:
+building
