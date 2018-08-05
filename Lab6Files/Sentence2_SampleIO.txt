@@ -1,0 +1,23 @@
+What is the name of the grammar file? sentence2.txt
+
+[E, F1, F2, OP, T]
+Which symbol do you want? (press <enter> to quit) T
+How many expressions? 5
+0 
+y 
+y 
+1 
+( 92 ) 
+
+[E, F1, F2, OP, T]
+Which symbol do you want? (press <enter> to quit) E
+How many expressions? 5
+x 
+92
+min ( x * 0 , - 1 )
+1 - x * 0 
+- - 1 + ( y % x - 42 )
+
+[E, F1, F2, OP, T]
+Which symbol do you want? (press <enter> to quit) 
+

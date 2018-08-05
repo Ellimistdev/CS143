@@ -1,0 +1,32 @@
+
+What is the name of the grammar file? sentence1.txt
+
+[<adj>, <adjp>, <dp>, <iv>, <n>, <np>, <pn>, <s>, <tv>, <vp>]
+Which symbol do you want? (press <enter> to quit) <n>
+How many expressions? 5
+man 
+university 
+father 
+father 
+dog 
+
+[<adj>, <adjp>, <dp>, <iv>, <n>, <np>, <pn>, <s>, <tv>, <vp>]
+Which symbol do you want? (press <enter> to quit) <np>
+How many expressions? 5
+the pretentious pretentious fat big child 
+the pretentious faulty father 
+the subliminal pretentious cat 
+a big man 
+a big dog 
+
+[<adj>, <adjp>, <dp>, <iv>, <n>, <np>, <pn>, <s>, <tv>, <vp>]
+Which symbol do you want? (press <enter> to quit) <dp>
+How many expressions? 5
+the 
+the 
+a
+the 
+the 
+
+[<adj>, <adjp>, <dp>, <iv>, <n>, <np>, <pn>, <s>, <tv>, <vp>]
+Which symbol do you want? (press <enter> to quit) 
