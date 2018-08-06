@@ -112,7 +112,7 @@ public class QuestionTree {
          if (node.data.equals("temp")) {
             node.data = input.nextLine();
          }
-      }
+     }
    }
 
    private void getChildNodes(Scanner input, QuestionNode node) {
