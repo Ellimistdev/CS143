@@ -18,7 +18,7 @@ public class GrammarTest {
         Scanner console = new Scanner(System.in);
 
         // open grammar file
-        Scanner input = new Scanner(new File("sentence1.txt"));
+        Scanner input = new Scanner(new File("sentence2.txt"));
 
         // read the grammar file and construct the grammarProcessor
         List<String> grammar = new ArrayList<String>();

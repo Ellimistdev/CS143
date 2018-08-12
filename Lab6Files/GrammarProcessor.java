@@ -1,6 +1,7 @@
 /*
 Programmer: Nick Rodriguez
 Description: Describes a Grammar Processor.
+Time spent on Assignment #6: 3 hours, 43 minutes
 */
 import java.util.*;
 
@@ -12,34 +13,28 @@ public class GrammarProcessor {
       if (grammar == null || grammar.isEmpty()) {
          throw new IllegalArgumentException();
       }
-      System.out.println("GrammarProcessor constructor display of grammar parameter:");
       for (String rule : grammar) {
-         System.out.println(rule);
          String[] currentRule = rule.split("::=");
          if (rules.containsKey(currentRule[0])){
             throw new IllegalArgumentException("Duplicate rule detected");
          }
          rules.put(currentRule[0], currentRule[1].split("[|]"));
       }
-      System.out.println("GrammarProcessor constructor display of contents of rules map:");
-      for (String key : rules.keySet()){
-         System.out.printf("%s\n\t%s\n", key, Arrays.toString(rules.get(key)));
-      }
    }
 
-   // not implemented
    public boolean grammarContains(String symbol) {
-      return false;
+      return rules.containsKey(symbol);
    }
 
-   // not implemented
    public String getSymbols() {
-      return "";
+      return rules.keySet().toString();
    }
 
-   // not implemented
    public String generate(String symbol) {
-      return "";
+      if (!rules.keySet().contains(symbol)){
+         throw new IllegalArgumentException("Symbol not in set");
+      }
+      return getString(symbol);
    }
 
    public String[] generate(String symbol, int times) {
@@ -51,5 +46,19 @@ public class GrammarProcessor {
          result[i] = generate(symbol);
       }
       return result;
+   }
+
+   private String getString(String symbol) {
+      Random rand = new Random();
+      String[] ruleSet = rules.get(symbol);
+      String rule = ruleSet[rand.nextInt(ruleSet.length)]; // select random value
+      String[] result = rule.trim().split("\\s+"); // some values may be nonterminal
+      String output = "";
+      
+      for (String str : result) {
+         // if str is terminal, add to output, else recurse
+         output += (!rules.keySet().contains(str)) ? String.format("%s ",str) : getString(str);
+      }
+      return output;
    }
 }
