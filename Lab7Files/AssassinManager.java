@@ -31,7 +31,7 @@ class AssassinManager {
       System.out.printf("\t %s", out);
    }
 
-   public void printGraveyard() {
+   public void printGraveYard() {
       ListIterator<AssassinNode> node = graveYard.listIterator();
       while (node.hasNext()) {
          AssassinNode dead = node.next();
@@ -61,7 +61,7 @@ class AssassinManager {
    private boolean listContains(String name, LinkedList<AssassinNode> list) {
       ListIterator<AssassinNode> node = list.listIterator();
       while (node.hasNext()) {
-         if (node.next().getPlayer().equals(name)) {
+         if (node.next().getPlayer().equalsIgnoreCase(name)) {
             return true;
          }
       }

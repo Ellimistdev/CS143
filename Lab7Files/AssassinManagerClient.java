@@ -33,7 +33,7 @@ public class AssassinManagerClient {
          System.out.println("\nCurrent kill ring:");
          mgr.printKillRing();
          System.out.println("Current gravyard:");
-         mgr.printGraveyard();
+         mgr.printGraveYard();
          System.out.print("\nNext victim? ");
          String victim = keyboard.nextLine();
          try {
@@ -44,8 +44,18 @@ public class AssassinManagerClient {
       }//end while loop
       System.out.println("\nGame was won by " + mgr.winner());
       System.out.println("Final gravyard is as follows:");
-      mgr.printGraveyard();
+      mgr.printGraveYard();
+      graveYardSurvey(mgr);
    }//end main() method
+   
+   public static void graveYardSurvey(AssassinManager mgr) {
+      String input;
+      do {
+         System.out.print("Enter victim name: (QUIT to quit) ");
+         input = keyboard.nextLine();
+         System.out.printf("graveyardContains(\"%s\") is %b",input, mgr.graveYardContains(input));
+      } while (!input.equalsIgnoreCase("quit"));
+   }
    
    //method: fillArrayList
    //purpose: fill List parameter with names from file specified by user
