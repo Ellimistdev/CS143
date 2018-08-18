@@ -1,7 +1,6 @@
 /*
 Programmer: Nick Rodriguez
-Description: This class describes a node to be used 
-             in a LinkedList for a game of Assassin
+Description: This class extends LinkedList for a game of Assassin
 */
 import java.util.*;
 
@@ -25,7 +24,15 @@ class KillList extends LinkedList<AssassinNode> {
       String result = "";
       ListIterator<AssassinNode> node = super.listIterator();
       while(node.hasNext()) {
-         result += String.format("%s#%s\n",node.next().getPlayer(), node.next().getPlayer());
+         String player = node.next().getPlayer();
+         String target;
+         if (node.hasNext()){
+            target = node.next().getPlayer();
+            node.previous();
+         } else {
+            target = getFirst().getPlayer();
+         }
+         result += String.format("%s#%s\n", player, target); 
       }
       return result;
    }
