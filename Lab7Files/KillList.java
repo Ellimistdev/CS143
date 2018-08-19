@@ -10,6 +10,7 @@ class KillList extends LinkedList<AssassinNode> {
       super();
    }
    
+   /* Overrides */
    public int indexOf(Object o) {
       if (o instanceof AssassinNode) {
          return super.indexOf(o);

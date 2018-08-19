@@ -48,12 +48,13 @@ public class AssassinManagerClient {
       graveYardSurvey(mgr);
    }//end main() method
    
+   // prompts user for a name, then reports whether that name is in the graveyard   
    public static void graveYardSurvey(AssassinManager mgr) {
       String input;
       do {
          System.out.print("Enter victim name: (QUIT to quit) ");
          input = keyboard.nextLine();
-         System.out.printf("graveyardContains(\"%s\") is %b",input, mgr.graveYardContains(input));
+         System.out.printf("graveyardContains(\"%s\") is %b\n",input, mgr.graveYardContains(input));
       } while (!input.equalsIgnoreCase("quit"));
    }
    

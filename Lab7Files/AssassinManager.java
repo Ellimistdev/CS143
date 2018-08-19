@@ -3,6 +3,9 @@ Programmer: Nick Rodriguez
 Description: This program implements a basic linked list and manages
              a game of assassin.
 Time spent on assignment 7: 
+Note: The Kill() method operates in O(n) time, as aside from the initial 
+      indexOf() call (which runs at worst in n time), all the operations
+      run in constant time.
 */
 import java.util.*;
 
@@ -22,7 +25,8 @@ class AssassinManager {
          killRing.add(new AssassinNode(name));
       }
    }
-
+   
+   /* Accessors */
    public void printKillRing() {
       ListIterator<AssassinNode> node = killRing.listIterator();
       String out = killRing.toString();
@@ -68,27 +72,16 @@ class AssassinManager {
       return false;
    }
 
+   /* Mutators */
    public void kill(String name) {
-      if (!killRing.contains(name) || this.gameOver()) {
+      int target = killRing.indexOf(name);
+      if (target < 0 || this.gameOver()) {
          throw new IllegalArgumentException(String.format("%s is not in the killRing", name));
       }
-      ListIterator<AssassinNode> node = killRing.listIterator();
-      boolean targetFound = false;
-      AssassinNode target;
-
-      do {
-         target = node.next();
-         if (target.getPlayer().equals(name)) {
-            AssassinNode killer = target.equals(killRing.getFirst()) ?
-                                  killRing.getLast() : 
-                                  killRing.get(killRing.indexOf(target) - 1);
-            target.setKiller(killer.getPlayer());
-            targetFound = true;
-         }
-      } while(!targetFound) ;
-
-      System.out.printf("TargetFound, name input %s removing %s\n", name, target.getPlayer());
+      AssassinNode victim = killRing.get(target);
+      String killer = (target == 0) ? killRing.getLast().getPlayer() : killRing.get(target - 1).getPlayer();
+      victim.setKiller(killer);
       killRing.remove(target);
-      graveYard.addFirst(target);
+      graveYard.addFirst(victim);
    }
 }
