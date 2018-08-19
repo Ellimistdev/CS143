@@ -2,7 +2,7 @@
 Programmer: Nick Rodriguez
 Description: This program implements a basic linked list and manages
              a game of assassin.
-Time spent on assignment 7: 
+Time spent on assignment 7: 4 Hours, 36 minutes
 Note: The Kill() method operates in O(n) time, as aside from the initial 
       indexOf() call (which runs at worst in n time), all the operations
       run in constant time.
