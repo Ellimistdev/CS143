@@ -12,7 +12,7 @@ public class AssassinManagerClient {
 
    public static void main(String[] args) {
       //Create the AssassinManager object from an ArrayList filled
-      //with names from a file specified by the user.  
+      //with names from a file specified by the user.
       AssassinManager mgr = null;
       boolean mgrSuccessfullyCreated = false;
       do {
@@ -20,14 +20,14 @@ public class AssassinManagerClient {
             ArrayList<String> playersList = new ArrayList<String>();
             fillArrayListFromFile(playersList);
             mgr = new AssassinManager(playersList);
-            mgrSuccessfullyCreated = true;  
+            mgrSuccessfullyCreated = true;
          }
          catch(Exception e) {
             System.out.println(e);
-            System.out.println("Error in file. Try another file.");   
+            System.out.println("Error in file. Try another file.");
          }
       } while(!mgrSuccessfullyCreated);
-      
+
       //Play a game of Assassin using the mgr AssassinManager object.
       while ( !mgr.gameOver() )  {
          System.out.println("\nCurrent kill ring:");
@@ -47,8 +47,8 @@ public class AssassinManagerClient {
       mgr.printGraveYard();
       graveYardSurvey(mgr);
    }//end main() method
-   
-   // prompts user for a name, then reports whether that name is in the graveyard   
+
+   // prompts user for a name, then reports whether that name is in the graveyard
    public static void graveYardSurvey(AssassinManager mgr) {
       String input;
       do {
@@ -57,13 +57,13 @@ public class AssassinManagerClient {
          System.out.printf("graveyardContains(\"%s\") is %b\n",input, mgr.graveYardContains(input));
       } while (!input.equalsIgnoreCase("quit"));
    }
-   
+
    //method: fillArrayList
    //purpose: fill List parameter with names from file specified by user
    //precondition: players List parameter is not null.
    //postcondition: players List has been filled with names from file
    public static void fillArrayListFromFile(List<String> players) {
-      boolean fileProcessedSuccessfully = false;    
+      boolean fileProcessedSuccessfully = false;
       do {
          try {//try to open and read from file specified by user
             System.out.print("Name of game players file? ");
@@ -78,5 +78,4 @@ public class AssassinManagerClient {
          }
       } while ( !fileProcessedSuccessfully );
    }//end fillArrayList() method
-   
 }//end AssassinManagerClient class

@@ -25,7 +25,7 @@ class AssassinManager {
          killRing.add(new AssassinNode(name));
       }
    }
-   
+
    /* Accessors */
    public void printKillRing() {
       ListIterator<AssassinNode> node = killRing.listIterator();
@@ -61,7 +61,7 @@ class AssassinManager {
    public boolean killRingContains(String name) {
       return listContains(name, killRing);
    }
-   
+
    private boolean listContains(String name, LinkedList<AssassinNode> list) {
       ListIterator<AssassinNode> node = list.listIterator();
       while (node.hasNext()) {

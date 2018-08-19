@@ -9,7 +9,7 @@ class KillList extends LinkedList<AssassinNode> {
    public KillList() {
       super();
    }
-   
+
    /* Overrides */
    public int indexOf(Object o) {
       if (o instanceof AssassinNode) {
@@ -17,10 +17,10 @@ class KillList extends LinkedList<AssassinNode> {
       }
       if (o instanceof String) {
          return super.indexOf(new AssassinNode((String) o));
-      }  
+      }
       return -1;
    }
-   
+
    public String toString() {
       String result = "";
       ListIterator<AssassinNode> node = super.listIterator();
@@ -33,7 +33,7 @@ class KillList extends LinkedList<AssassinNode> {
          } else {
             target = getFirst().getPlayer();
          }
-         result += String.format("%s#%s\n", player, target); 
+         result += String.format("%s#%s\n", player, target);
       }
       return result;
    }
